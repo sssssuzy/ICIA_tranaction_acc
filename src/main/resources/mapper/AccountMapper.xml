@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.AccountMapper">
+ 	<select id="list" resultType="com.example.domain.AccountVO">
+ 		select * from tbl_account limit #{pageStart}, #{perPageNum}
+ 	</select>
+ 	<select id="read" resultType="com.example.domain.AccountVO">
+ 		select * from tbl_account where ano = #{ano}
+ 	</select>
+ 	<insert id="insert">
+ 		insert into tbl_account(ano,aname,balance) values(#{ano},#{aname},#{balance})
+ 	</insert>
+ 	<select id="totalCount"  resultType="int">
+ 		select count(*) from tbl_account 
+ 	</select>
+ 	<select id="listAll" resultType="com.example.domain.AccountVO">
+ 		select * from tbl_account
+ 	</select>
+ 	<update id="updateBalance">
+ 		update tbl_account set balance = balance + #{amount} where ano=#{ano}
+ 	</update>
+</mapper>

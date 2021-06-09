@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.TradeMapper">
+ 	<insert id="insert">
+ 		insert into tbl_trade(ano,type,tradeNo,amount) values(#{ano},#{type},#{tradeNo},#{amount});
+ 	</insert>
+ 	
+ 	<select id="list" resultType="com.example.domain.TradeVO">
+       select t.*,aname from tbl_trade t, tbl_account a where t.tradeNo=a.ano and t.ano=#{ano} order by tno desc limit #{cri.pageStart}, #{cri.perPageNum};
+    </select>
+    <select id="totalCount" resultType="int">
+       select count(*) from tbl_trade where ano=#{ano}
+    </select>
+</mapper>
